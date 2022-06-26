@@ -1,0 +1,95 @@
+{%extends "patient/home.html" %}
+{%load static%}
+{%block content%} 
+      
+
+     
+<br><br><br><br>
+
+      {%if available_slots%}
+
+      <style>
+         #profile{
+             color:#6B63FE;
+         }
+     
+         #Text{
+             color:#212529;
+         }
+       
+     </style>
+     
+     <br>
+     <br>
+     <br><br><br><br>
+     
+     
+     <div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+         <div>
+             <br>
+             <h1 id="regText" >View Slots</h1>
+             <br>
+         </div>
+         <div id="aligndiv" class=" text-light d-flex">
+             
+             <div class="d-none d-md-block p-2"><img src="{% static 'images/profile1.svg' %}" class="d-block w-100"
+                                                     alt="assets/portfolio.svg"></div>
+     
+         </div>
+     
+         <div id="aligndiv" class="bg-light text-dark" style="border-radius: 25px;">
+             <div id="profilediv" class="p-2">
+                 <br>
+                 <h5 style="text-align: center" id="profile1"><span id="Text" class="extra" style="font-weight:bolder;">Slots
+                 </h5>
+                 <br>
+                 {% for slot in available_slots %}
+                 <form id="slots{{slot.id}}">
+                  <label id="profile">Date & Time<br/><span id="Text" class="extra"
+                     style="font-weight:bolder;">{{slot.time}} </span></label>
+                  <input type="hidden" name="apptno" value="{{slot.id}}"/>
+                  <input type="submit" style="margin-left: 25px" value="Book Appoinment" >
+               </form>
+                 {% endfor %}
+                
+             </div>
+         </div>
+     </div>
+     
+     <div class="container d-flex justify-content-center">
+         <small class="text-muted">
+         </small>
+     </div>
+     
+     <br><br><br>
+
+       {%else%}
+
+       <br><br><br><br><br><br>
+       <div id="formbox" class=" bg-dark text-light container d-flex justify-content-center mb-3re">
+           <div id="aligndiv" class=" text-light d-flex">
+               <div class="p-2"><img src="{% static 'images/logout.svg' %}" class="d-block w-100" alt="assets/portfolio.svg"></div>
+           </div>
+       
+           <div id="aligndiv" class="bg-dark text-light" style="border-radius: 25px;">
+               <h1> No<span id="carouselText"> Vacant </span>slots!</h1>
+           </div>
+       
+       </div>
+
+       {%endif%}
+
+
+       <script>
+         function SomeDeleteRowFunction(o,time) {
+            console.log('slots'+time)
+            
+            var p=o.parentNode.parentNode;
+            p.parentNode.removeChild(p);
+            document.getElementById('slots'+time).submit();
+
+              
+         }
+         </script>
+      
+{%endblock content%}

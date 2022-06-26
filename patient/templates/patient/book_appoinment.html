@@ -1,0 +1,42 @@
+{%extends "patient/home.html" %}
+{%load static%}
+{%block content%} 
+      
+     <br><br><br><br>
+     
+      <form id="form" style="display:inline-block;"> 
+        <input type="search" id="query" name="specialisation" placeholder="Search by specialisation" class="form-control ds-input" style="width:50%;margin-left:650px;"><span><button class="btn btn-outline-success btn-lg"style="margin-left:850px;" >Search</button></span
+        <br/>
+      </form>
+      
+      <br><br><br><br>
+      
+        {% for doc in available_doctors %}
+        <div style="align-items: center;"></div>
+         
+         <div class="card">
+            <div class="card-header bg-dark text-white align-items: center;">
+            {{doc.specialisation}}
+            </div>
+            <div class="card-body">
+            
+            <form id="doc">
+               <h5 class="card-title"><span>Doctor Name: </span>{{doc.user.username}}</h5>
+               <input type="hidden" name="name" value="{{doc.user.username}}"/>
+               <input type="submit" class="btn" style="color:white;background-color:#A020F0" value="View Available Slots" >
+            </form>
+            </div>
+         </div>
+      <br><br><br>         
+              
+
+   </div>
+        {%endfor %}
+      
+      </table>
+
+{%endblock content%}
+       
+
+
+ 
